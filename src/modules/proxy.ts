@@ -16,6 +16,22 @@ class TcpProxy {
       client.pipe(socket);
       socket.pipe(client);
     });
+    client.on('error', err => {
+      console.log(err);
+      this.tryEnd(client, socket);
+    });
+    socket.on('error', err => {
+      console.log(err);
+      this.tryEnd(client, socket);
+    });
+  }
+
+  private tryEnd (...sockets : net.Socket[]) {
+    sockets.forEach(socket => {
+      try {
+        socket.end();
+      } catch (err) {}
+    });
   }
 
 }

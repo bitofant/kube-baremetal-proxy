@@ -5,7 +5,7 @@
   "main": "dist/app.js",
   "scripts": {
     "start": "node dist/app.js",
-    "build": "NODE_ENV=production tsc build",
+    "build": "NODE_ENV=production tsc",
     "prod": "npm run build && npx forever start dist/app.js",
     "prod:stop": "npx forever stop dist/app.js",
     "dev": "npm-run-all --parallel dev:build dev:run",

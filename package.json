@@ -1,0 +1,35 @@
+{
+  "name": "kube-baremetal-proxy",
+  "version": "0.1.0",
+  "description": "proxies ports 80 and 443 to: bare metal kubernetes / nginx ingress / nodeport",
+  "main": "dist/app.js",
+  "scripts": {
+    "start": "node dist/app.js",
+    "build": "NODE_ENV=production tsc build",
+    "prod": "npm run build && npx forever start dist/app.js",
+    "prod:stop": "npx forever stop dist/app.js",
+    "dev": "npm-run-all --parallel dev:build dev:run",
+    "dev:build": "tsc --watch",
+    "dev:run": "nodemon dist/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bitofant/kube-baremetal-proxy.git"
+  },
+  "author": "bitofant",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bitofant/kube-baremetal-proxy/issues"
+  },
+  "homepage": "https://github.com/bitofant/kube-baremetal-proxy#readme",
+  "devDependencies": {
+    "@types/node": "^13.5.0",
+    "nodemon": "^2.0.2",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^3.7.5"
+  },
+  "dependencies": {
+    "@kubernetes/client-node": "^0.11.0",
+    "forever": "^2.0.0"
+  }
+}
